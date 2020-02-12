@@ -1,6 +1,7 @@
 ======
 Reeds Shepp Path Library
 ======
+Forked from `Here <https://github.com/ghliu/pyReedsShepp>`_, a repository of `Guan-Horng Liu <https://github.com/ghliu>`_. Modify the **path_type** function of API to get the length (positive for forward, negative for backward) of each segment.
 
 |build_status|
 
