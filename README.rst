@@ -49,14 +49,7 @@ API
 
 - path_type( q0, q1, turning_radius)
 
-  - return the tuple of path segment type for the Reed Sheps curve from q0 to q1 with specified turning radius
-
-
-TODO
-======
-* PyPI install
-
-* cpp/python demo
+  - return the tuple of path segment type and **length** for the Reed Sheps curve from q0 to q1 with specified turning radius
 
 References
 ======
