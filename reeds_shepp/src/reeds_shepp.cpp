@@ -553,7 +553,7 @@ void ReedsSheppStateSpace::type(double q0[3], double q1[3], ReedsSheppPathTypeCa
 {
     ReedsSheppPath path = reedsShepp(q0, q1);
     for (int i=0;i<5;++i)
-        cb(path.type_[i], path.length_[i], user_data);
+        cb(path.type_[i], rho_ * path.length_[i], user_data);
     return;
 }
 
