@@ -707,7 +707,7 @@ struct __pyx_obj_11reeds_shepp___pyx_scope_struct_1_type;
 /* "core.pxd":3
  * cimport cython
  * 
- * ctypedef int (*ReedsSheppPathSamplingCallback)(double q[3], void* user_data)             # <<<<<<<<<<<<<<
+ * ctypedef int (*ReedsSheppPathSamplingCallback)(double q[4], void* user_data)             # <<<<<<<<<<<<<<
  * ctypedef int (*ReedsSheppPathTypeCallback) (int t, double l, void* user_data)
  * 
  */
@@ -715,7 +715,7 @@ typedef int (*__pyx_t_4core_ReedsSheppPathSamplingCallback)(double *, void *);
 
 /* "core.pxd":4
  * 
- * ctypedef int (*ReedsSheppPathSamplingCallback)(double q[3], void* user_data)
+ * ctypedef int (*ReedsSheppPathSamplingCallback)(double q[4], void* user_data)
  * ctypedef int (*ReedsSheppPathTypeCallback) (int t, double l, void* user_data)             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "reeds_shepp.h":
@@ -2514,8 +2514,8 @@ static PyObject *__pyx_pf_11reeds_shepp_4path_type(CYTHON_UNUSED PyObject *__pyx
 /* "core.pxd":13
  *         void type(double q0[3], double q1[3], ReedsSheppPathTypeCallback cb, void* user_data)
  * 
- * cdef inline int sample_cb(double q[3], void* f):             # <<<<<<<<<<<<<<
- *     qn = (q[0], q[1], q[2])
+ * cdef inline int sample_cb(double q[4], void* f):             # <<<<<<<<<<<<<<
+ *     qn = (q[0], q[1], q[2], q[3])
  *     return (<object>f)(qn)
  */
 
@@ -2527,13 +2527,14 @@ static CYTHON_INLINE int __pyx_f_4core_sample_cb(double *__pyx_v_q, void *__pyx_
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
   __Pyx_RefNannySetupContext("sample_cb", 0);
 
   /* "core.pxd":14
  * 
- * cdef inline int sample_cb(double q[3], void* f):
- *     qn = (q[0], q[1], q[2])             # <<<<<<<<<<<<<<
+ * cdef inline int sample_cb(double q[4], void* f):
+ *     qn = (q[0], q[1], q[2], q[3])             # <<<<<<<<<<<<<<
  *     return (<object>f)(qn)
  * 
  */
@@ -2543,81 +2544,86 @@ static CYTHON_INLINE int __pyx_f_4core_sample_cb(double *__pyx_v_q, void *__pyx_
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = PyFloat_FromDouble((__pyx_v_q[2])); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 14, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((__pyx_v_q[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(2, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_t_4);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_v_qn = __pyx_t_4;
   __pyx_t_4 = 0;
+  __pyx_v_qn = __pyx_t_5;
+  __pyx_t_5 = 0;
 
   /* "core.pxd":15
- * cdef inline int sample_cb(double q[3], void* f):
- *     qn = (q[0], q[1], q[2])
+ * cdef inline int sample_cb(double q[4], void* f):
+ *     qn = (q[0], q[1], q[2], q[3])
  *     return (<object>f)(qn)             # <<<<<<<<<<<<<<
  * 
  * cdef inline int type_cb(int t, double l, void* f):
  */
   __Pyx_INCREF(((PyObject *)__pyx_v_f));
-  __pyx_t_3 = ((PyObject *)__pyx_v_f); __pyx_t_2 = NULL;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_4 = ((PyObject *)__pyx_v_f); __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
     }
   }
-  if (!__pyx_t_2) {
-    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_qn); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+  if (!__pyx_t_3) {
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_qn); if (unlikely(!__pyx_t_5)) __PYX_ERR(2, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
   } else {
     #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_qn};
-      __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 15, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_GOTREF(__pyx_t_4);
+    if (PyFunction_Check(__pyx_t_4)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_qn};
+      __pyx_t_5 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(2, 15, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_GOTREF(__pyx_t_5);
     } else
     #endif
     #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
-      PyObject *__pyx_temp[2] = {__pyx_t_2, __pyx_v_qn};
-      __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 15, __pyx_L1_error)
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_GOTREF(__pyx_t_4);
+    if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
+      PyObject *__pyx_temp[2] = {__pyx_t_3, __pyx_v_qn};
+      __pyx_t_5 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_5)) __PYX_ERR(2, 15, __pyx_L1_error)
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_GOTREF(__pyx_t_5);
     } else
     #endif
     {
-      __pyx_t_1 = PyTuple_New(1+1); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 15, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2); __pyx_t_2 = NULL;
+      __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 15, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3); __pyx_t_3 = NULL;
       __Pyx_INCREF(__pyx_v_qn);
       __Pyx_GIVEREF(__pyx_v_qn);
-      PyTuple_SET_ITEM(__pyx_t_1, 0+1, __pyx_v_qn);
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 15, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_qn);
+      __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_2, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(2, 15, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
   }
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_4); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(2, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_r = __pyx_t_5;
+  __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_5); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(2, 15, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_r = __pyx_t_6;
   goto __pyx_L0;
 
   /* "core.pxd":13
  *         void type(double q0[3], double q1[3], ReedsSheppPathTypeCallback cb, void* user_data)
  * 
- * cdef inline int sample_cb(double q[3], void* f):             # <<<<<<<<<<<<<<
- *     qn = (q[0], q[1], q[2])
+ * cdef inline int sample_cb(double q[4], void* f):             # <<<<<<<<<<<<<<
+ *     qn = (q[0], q[1], q[2], q[3])
  *     return (<object>f)(qn)
  */
 
@@ -2627,6 +2633,7 @@ static CYTHON_INLINE int __pyx_f_4core_sample_cb(double *__pyx_v_q, void *__pyx_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_WriteUnraisable("core.sample_cb", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
   __pyx_r = 0;
   __pyx_L0:;

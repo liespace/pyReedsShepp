@@ -570,7 +570,7 @@ void ReedsSheppStateSpace::sample(double q0[3], double q1[3], double step_size, 
     return;
 }
 
-void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, double seg, double s[3])
+void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, double seg, double s[4])
 {
 
     if (seg < 0.0) seg = 0.0;
@@ -580,6 +580,17 @@ void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, doubl
 
     s[0] = s[1] = 0.0;
     s[2] = q0[2];
+    s[3] = 0.0;
+    switch(path.type_[0]) {
+        case RS_LEFT:
+            s[3] = 1.0 / rho_;
+            break;
+        case RS_RIGHT:
+            s[3] = -1.0 / rho_;
+            break;
+        default:
+            break;
+    }
 
     for (unsigned int i=0; i<5 && seg>0; ++i)
     {
@@ -600,15 +611,18 @@ void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, doubl
                 s[0] += ( sin(phi+v) - sin(phi));
                 s[1] += (-cos(phi+v) + cos(phi));
                 s[2] = phi + v;
+                s[3] = 1.0/rho_;
                 break;
             case RS_RIGHT:
                 s[0] += (-sin(phi-v) + sin(phi));
                 s[1] += ( cos(phi-v) - cos(phi));
                 s[2] = phi - v;
+                s[3] = -1.0/rho_;
                 break;
             case RS_STRAIGHT:
                 s[0] += (v * cos(phi));
                 s[1] += (v * sin(phi));
+                s[3] = 0.0;
                 break;
             case RS_NOP:
                 break;

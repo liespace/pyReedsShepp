@@ -67,6 +67,7 @@ def plot_car(q):
 
 def plot_path(q0, q1):
     qs = reeds_shepp.path_sample(q0, q1, rho, step_size)
+    print([q[3] for q in qs])
     xs = [q[0] for q in qs]
     ys = [q[1] for q in qs]
     plt.plot(xs, ys, 'b-')
