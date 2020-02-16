@@ -41,7 +41,7 @@
 #include <boost/math/constants/constants.hpp>
 #include <cassert>
 
-typedef int (*ReedsSheppPathSamplingCallback)(double q[4], void* user_data);
+typedef int (*ReedsSheppPathSamplingCallback)(double q[5], void* user_data);
 typedef int (*ReedsSheppPathTypeCallback)(int t, double l, void* user_data);
 
 class ReedsSheppStateSpace
@@ -84,7 +84,7 @@ public:
     ReedsSheppPath reedsShepp(double q0[3], double q1[3]);
 
 protected:
-    void interpolate(double q0[3], ReedsSheppPath &path, double seg, double q[4]);
+    void interpolate(double q0[3], ReedsSheppPath &path, double seg, double q[5]);
 
     /** \brief Turning radius */
     double rho_;

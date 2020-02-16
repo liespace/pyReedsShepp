@@ -563,14 +563,14 @@ void ReedsSheppStateSpace::sample(double q0[3], double q1[3], double step_size, 
     double dist = rho_ * path.length();
 
     for (double seg=0.0; seg<=dist; seg+=step_size){
-        double qnew[3] = {};
+        double qnew[5] = {};
         interpolate(q0, path, seg/rho_, qnew);
         cb( qnew, user_data);
     }
     return;
 }
 
-void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, double seg, double s[4])
+void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, double seg, double s[5])
 {
 
     if (seg < 0.0) seg = 0.0;
@@ -581,6 +581,7 @@ void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, doubl
     s[0] = s[1] = 0.0;
     s[2] = q0[2];
     s[3] = 0.0;
+    s[4] = path.length_[0];
     switch(path.type_[0]) {
         case RS_LEFT:
             s[3] = 1.0 / rho_;
@@ -605,6 +606,7 @@ void ReedsSheppStateSpace::interpolate(double q0[3], ReedsSheppPath &path, doubl
             seg -= v;
         }
         phi = s[2];
+        s[4] = path.length_[i];
         switch(path.type_[i])
         {
             case RS_LEFT:
