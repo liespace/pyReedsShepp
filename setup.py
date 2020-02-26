@@ -1,4 +1,4 @@
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 
 try:
     from Cython.Distutils import build_ext
@@ -31,10 +31,9 @@ with open("README.md", "r") as fh:
 
 setup(
     name="reeds_shepp",
-    version="1.0.3",
+    version="1.0.7",
     description="Code to calculate analytic Reeds Shepp path",
     long_description=long_description,
-    long_description_content_type="text/markdown",
     author="Gabel Liemann",
     author_email="troubleli233@gmail.com",
     url='https://github.com/liespace/pyReedsShepp',
@@ -44,5 +43,6 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 2",
         "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent"],
+        "Operating System :: POSIX :: Linux",
+        'Topic :: Scientific/Engineering :: Mathematics'],
 )

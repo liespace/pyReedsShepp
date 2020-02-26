@@ -1,0 +1,4 @@
+include README.md
+include reeds_shepp/*.pyx
+include reeds_shepp/include/*
+include reeds_shepp/reeds_shepp.cpp
