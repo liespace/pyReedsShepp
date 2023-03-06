@@ -78,13 +78,14 @@ def plot_path(q0, q1):
 
 
 def plot_table(cols):
-    rows = ((len(qs)) / cols)
+    rows = int((len(qs)) / cols)
     for i,(q0, q1) in enumerate(qs):
         plt.subplot(rows, cols, i+1)
         plot_path(q0, q1)
         dist = reeds_shepp.path_length(q0, q1, rho)
         print(reeds_shepp.path_type(q0, q1, rho))
         plt.title('length: {:.2f}'.format(dist))
+    plt.tight_layout()
     plt.savefig('fig/demo.png')
     plt.show()
 
